@@ -7,7 +7,8 @@ module.exports = {
     // where the compiled version should be outputted
     output: { 
         path: path.join(__dirname, "build"), 
-        filename: "index.bundle.js" 
+        filename: "index.bundle.js" ,
+        publicPath: "auto"
     },
     // the mode/env of our production
     mode: process.env.NODE_ENV || "development",
@@ -23,6 +24,7 @@ module.exports = {
             directory: path.join(__dirname, "src")
         }
     },
+    // listens for file extensions and matches the loader to them
     module: {
         rules: [
             { 
@@ -36,7 +38,7 @@ module.exports = {
             },
             { 
                 test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
-                use: ["file-loader"] 
+                type: "asset"
             },
         ],
     },
